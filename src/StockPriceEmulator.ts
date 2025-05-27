@@ -1,3 +1,5 @@
+import type { StockTickDataType, Nullable } from "./types/stock.js";
+
 const EventEmitter = require("eventemitter3");
 const toFixedDecimal = require("./utils/numbersUtils");
 
@@ -52,14 +54,5 @@ class StockPriceEmulator extends EventEmitter {
     if (this.timer) clearTimeout(this.timer);
   }
 }
-
-type Nullable<T> = T | null;
-
-type StockTickDataType = {
-  name: string;
-  price: number;
-  percentage: number;
-  timestamp: Date;
-};
 
 module.exports = StockPriceEmulator;

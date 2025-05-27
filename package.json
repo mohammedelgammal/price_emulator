@@ -8,7 +8,9 @@
     "dev": "nodemon"
   },
   "dependencies": {
-    "eventemitter3": "^5.0.0"
+    "date-fns": "^4.1.0",
+    "eventemitter3": "^5.0.0",
+    "heap-js": "^2.6.0"
   },
   "devDependencies": {
     "@types/node": "^20.17.50",
