@@ -8,12 +8,12 @@ const { format, startOfHour } = require("date-fns");
 const LOG_PATH = path.resolve(__dirname, "../logs");
 const DATE_FORMAT = "dd-MM-yyyy__HH-mm"; // replaced / and : => invalid file names in windows
 
-export class PriceLogger {
+class PriceLogger {
   private currentStream?: WriteStream;
   private currentHour: Date;
   private readonly logPath: string = LOG_PATH;
 
-  constructor(logPath: string) {
+  constructor(logPath: string = LOG_PATH) {
     this.logPath = logPath;
     mkdirSync(this.logPath);
     this.currentHour = startOfHour(new Date());
@@ -50,3 +50,5 @@ export class PriceLogger {
     this.currentStream?.end();
   }
 }
+
+module.exports = PriceLogger;

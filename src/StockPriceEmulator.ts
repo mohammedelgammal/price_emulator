@@ -9,14 +9,23 @@ class StockPriceEmulator extends EventEmitter {
   private price: number = 0;
   private changePercentage: number = 0;
   private timer: Nullable<NodeJS.Timeout> = null;
+  private readonly minInterval: number = 1000;
+  private readonly maxInterval: number = 4000;
 
-  constructor(name: string, startingPrice: number) {
+  constructor(
+    name: string,
+    startingPrice: number,
+    minInterval: number,
+    maxInterval: number
+  ) {
     super();
 
     this.name = name;
     this.startingPrice = startingPrice;
     this.price = startingPrice;
     this.changePercentage = 0;
+    this.minInterval = minInterval;
+    this.maxInterval = maxInterval;
 
     this.scheduleUpdate();
   }
@@ -27,7 +36,9 @@ class StockPriceEmulator extends EventEmitter {
   }
 
   private scheduleUpdate(): void {
-    const randomInterval = Math.random() * (500 - 50) + 50;
+    const randomInterval =
+      Math.floor(Math.random() * (this.maxInterval - this.minInterval + 1)) +
+      this.MIN_INTERVAL;
     this.timer = setTimeout(() => this.updatePrice(), randomInterval);
   }
 
@@ -56,3 +67,4 @@ class StockPriceEmulator extends EventEmitter {
 }
 
 module.exports = StockPriceEmulator;
+export type { StockPriceEmulator };
